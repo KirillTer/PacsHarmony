@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'devextreme/dist/css/dx.common.css';
+import 'devextreme/dist/css/dx.light.css';
+import React from 'react'
+import { Route, Switch } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Layout from "./containers/main-page/Layout";
+import Auth from "./containers/auth/Auth";
+import Users from "./containers/Users";
+import Dashboard from "./containers/Dashboard";
+import ProtectedRouter from "./components/ProtectedRoute";
+
+const App = () => {
+    return (
+        <Layout>
+        <Switch>
+          <Route exact path="/" component={Dashboard} />
+          <Route path="/auth" component={Auth} />
+          <ProtectedRouter path="/users" component={Users} />
+        </Switch>
+      </Layout>
+    )
 }
 
-export default App;
+export default App
